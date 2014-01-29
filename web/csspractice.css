@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : Andy
 */
 
+body{
+    background-color: beige;
+}
+
 h2, p{
     text-align: center;
 }
@@ -15,4 +19,8 @@ h2, p{
 .content{
     padding-left:20%;
     padding-right:20%;
+}
+
+span{
+    border: 1px solid black;
 }
