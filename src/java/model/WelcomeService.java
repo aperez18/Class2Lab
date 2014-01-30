@@ -7,15 +7,20 @@ public class WelcomeService {
     private Calendar cal;
     
     private String checkTime(){
-        Calendar morning;
-        Calendar afternoon;
-        Calendar night;
-        String time = "";
+        Calendar morning = Calendar.getInstance();
+        Calendar afternoon = Calendar.getInstance();
+        Calendar night = Calendar.getInstance();
+        
+        morning.set(Calendar.HOUR_OF_DAY, 5);
+        afternoon.set(Calendar.HOUR_OF_DAY, 12);
+        night.set(Calendar.HOUR_OF_DAY, 18);
+        
+        String time;
         cal = Calendar.getInstance();
-        if(cal.get(Calendar.HOUR) > 11 && cal.get(Calendar.HOUR) < 18){
-            time = "afternoon";
-        }else if(cal.get(Calendar.HOUR) < 12 && cal.get(Calendar.HOUR) > 5){
+        if(cal.after(night) && cal.before(afternoon)){
             time = "morning";
+        }else if(cal.after(morning) && cal.before(night)){
+            time = "afternoon";
         }else{
             time = "night";
         }
@@ -24,8 +29,7 @@ public class WelcomeService {
     }
     
     public String getGreeting(String name){
-        checkTime();
-        String greeting = "";
+        String greeting = "Good " + checkTime() + " " + name;
         return greeting;
     }
 }
